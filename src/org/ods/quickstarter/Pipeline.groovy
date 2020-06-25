@@ -68,7 +68,7 @@ class Pipeline implements Serializable {
             config << BitbucketService.readConfigFromEnv(script.env)
             config << NexusService.readConfigFromEnv(script.env)
         }
-
+        logger.info("Agent used: ${config.imageStreamTag}")
         onAgentNode(config) { context ->
             new CheckoutStage(script, context).execute()
             new CreateOutputDirectoryStage(script, context).execute()
